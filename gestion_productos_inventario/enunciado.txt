@@ -1,0 +1,26 @@
+Crea una aplicación en Dart que permita gestionar un inventario de productos. 
+Cada producto tendrá un nombre, un precio (en formato String que luego deberás convertir a double), 
+y una categoría. Los productos deben almacenarse en una colección adecuada 
+(puede ser una List, Map, o Set según tu elección).
+
+🔍 Requisitos:
+
+    Define una clase Producto con los atributos nombre, precio, y categoría.
+
+    Crea una colección para almacenar al menos 5 productos.
+
+    Asegúrate de que el precio de cada producto se inicialice como una cadena (String) 
+    y luego se convierta a double para cálculos.
+
+    Implementa una función que filtre los productos por categoría.
+
+    Calcula el precio total del inventario.
+
+    Muestra por consola los productos ordenados por precio (de menor a mayor).
+
+💡 Bonus:
+
+    Agrega funcionalidad para agrupar los productos por categoría usando una 
+    colección adecuada (Map<String, List<Producto>>).
+
+    Controla posibles errores en la conversión de String a double.
