@@ -42,6 +42,8 @@ List<String> respuestasLenguaje = [
   "4.- Es una red de computadoras interconectadas",
 ];
 
+List<String> preguntasFalladas = [];
+
 void startQuizz() {
   int score = 0;
   print("Bienvenido al quizz!");
@@ -50,6 +52,14 @@ void startQuizz() {
   preguntar(score);
 
   print(mensajePuntuacion(score));
+
+  if (score < 4) {}
+  print("¿Desea ver las preguntas que ha fallado? (s/n):");
+  String? respuesta = stdin.readLineSync()?.toLowerCase();
+
+  if (respuesta == "s") {
+    verPreguntasFalladas();
+  }
 }
 
 // Metodo para lanzar las preguntas al usuario y que este conteste
@@ -72,6 +82,7 @@ int preguntar(int score) {
           print("CORRECTO");
         } else {
           print("INCORRECTO :(");
+          preguntasFalladas.add(pregunta.key);
         }
         break;
 
@@ -88,6 +99,7 @@ int preguntar(int score) {
           print("CORRECTO");
         } else {
           print("INCORRECTO :(");
+          preguntasFalladas.add(pregunta.key);
         }
         break;
 
@@ -104,6 +116,7 @@ int preguntar(int score) {
           print("CORRECTO");
         } else {
           print("INCORRECTO :(");
+          preguntasFalladas.add(pregunta.key);
         }
         break;
 
@@ -120,6 +133,7 @@ int preguntar(int score) {
           print("CORRECTO");
         } else {
           print("INCORRECTO :(");
+          preguntasFalladas.add(pregunta.key);
         }
         break;
       default:
@@ -165,4 +179,10 @@ String mensajePuntuacion(int puntuacion) {
   }
 
   return mensaje;
+}
+
+void verPreguntasFalladas() {
+  for (var fallo in preguntasFalladas) {
+    print(fallo);
+  }
 }
