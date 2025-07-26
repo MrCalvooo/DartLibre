@@ -1,5 +1,6 @@
 import 'dart:io';
 
+// Mapa con las preguntas: respuestas
 Map<String, String> quizzQuestions = {
   "¿Que significan las siglas CPU?": "unidad central de procesamiento",
   "¿Que es un sistema operativo?":
@@ -46,30 +47,33 @@ List<String> preguntasFalladas = [];
 
 void startQuizz() {
   int score = 0;
-  print("Bienvenido al quizz!");
   print("Responde las siguientes preguntas:");
 
   preguntar(score);
 
   print(mensajePuntuacion(score));
 
-  if (score < 4) {}
-  print("¿Desea ver las preguntas que ha fallado? (s/n):");
-  String? respuesta = stdin.readLineSync()?.toLowerCase();
+  if (score < 4) {
+    print("¿Desea ver las preguntas que ha fallado? (s/n):");
+    String? respuesta = stdin.readLineSync()?.toLowerCase();
 
-  if (respuesta == "s") {
-    verPreguntasFalladas();
+    if (respuesta == "s") {
+      verPreguntasFalladas();
+    }
   }
 }
 
 // Metodo para lanzar las preguntas al usuario y que este conteste
 int preguntar(int score) {
   String? answer;
+  // Recorremos el contenido del mapa
   for (var pregunta in quizzQuestions.entries) {
     print(pregunta.key);
 
+    // Usamos el switch para cada pregunta del mapa
     switch (pregunta.key) {
       case "¿Que significan las siglas CPU?":
+        // Se muestran las respuestas posibles dentro de las listas de respuestas de cada pregunta
         for (var respuesta in respuestasCPU) {
           print(respuesta);
         }
@@ -87,6 +91,7 @@ int preguntar(int score) {
         break;
 
       case "¿Que es un sistema operativo?":
+        // Se muestran las respuestas posibles dentro de las listas de respuestas de cada pregunta
         for (var respuesta in respuestasSO) {
           print(respuesta);
         }
@@ -104,6 +109,7 @@ int preguntar(int score) {
         break;
 
       case "¿Que es un algoritmo?":
+        // Se muestran las respuestas posibles dentro de las listas de respuestas de cada pregunta
         for (var respuesta in respuestasAlgoritmo) {
           print(respuesta);
         }
@@ -121,6 +127,7 @@ int preguntar(int score) {
         break;
 
       case "¿Que es un lenguaje de programacion?":
+        // Se muestran las respuestas posibles dentro de las listas de respuestas de cada pregunta
         for (var respuesta in respuestasLenguaje) {
           print(respuesta);
         }
@@ -139,7 +146,6 @@ int preguntar(int score) {
       default:
     }
   }
-
   return score;
 }
 
@@ -159,11 +165,12 @@ bool comprobarRespuestas(String? respuesta) {
   }
 }
 
+// Función para mostrar al usuario un mensaje personalizado dependiendo de la puntuación
 String mensajePuntuacion(int puntuacion) {
   String mensaje;
   switch (puntuacion) {
     case 4:
-      mensaje = ("ENHORABUENA, NO HA FALLADO NINGUNA PREGUNTA");
+      mensaje = ("ENHORABUENA, NO HA FALLADO NINGUNA PREGUNTA, HA GANADO");
       break;
     case 3:
       mensaje = ("Uyyyy casi perfecto, fallo una pregunta");
@@ -177,7 +184,6 @@ String mensajePuntuacion(int puntuacion) {
     default:
       mensaje = ("No ha acertado ni una sola bien :(");
   }
-
   return mensaje;
 }
 
