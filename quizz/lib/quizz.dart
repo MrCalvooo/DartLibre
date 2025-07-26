@@ -7,7 +7,7 @@ Map<String, String> quizzQuestions = {
       "es un software que gestiona los recursos de hardware y software de un ordenador",
   "¿Que es un algoritmo?":
       "es una secuencia de pasos o instrucciones que se siguen para resolver un problema o realizar una tarea",
-  "¿Que es un lenguaje de programacion?":
+  "¿Que es un lenguaje de programación?":
       "es un conjunto de reglas y simbolos que se utilizan para escribir programas informaticos",
 };
 
@@ -126,7 +126,7 @@ int preguntar(int score) {
         }
         break;
 
-      case "¿Que es un lenguaje de programacion?":
+      case "¿Que es un lenguaje de programación?":
         // Se muestran las respuestas posibles dentro de las listas de respuestas de cada pregunta
         for (var respuesta in respuestasLenguaje) {
           print(respuesta);
@@ -188,7 +188,9 @@ String mensajePuntuacion(int puntuacion) {
 }
 
 void verPreguntasFalladas() {
+  int i = 1;
   for (var fallo in preguntasFalladas) {
-    print(fallo);
+    print("$i: $fallo");
+    i++;
   }
 }
