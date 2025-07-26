@@ -10,50 +10,52 @@ Map<String, String> quizzQuestions = {
       "es un conjunto de reglas y simbolos que se utilizan para escribir programas informaticos",
 };
 
+// 1. Respuestas para "¿Que significan las siglas CPU?"
+List<String> respuestasCPU = [
+  "1.- Unidad de Control de Procesamiento",
+  "2.- Centro de Procesamiento Unificado",
+  "3.- Computadora Personal Universal",
+  "4.- Unidad Central de Procesamiento",
+];
+
+// 2. Respuestas para "¿Que es un sistema operativo?"
+List<String> respuestasSO = [
+  "1.- Es un conjunto de cables que conectan los componentes de un ordenador",
+  "2.- Es un tipo de lenguaje de programación para hardware",
+  "3.- Es un software que gestiona los recursos de hardware y software de un ordenador",
+  "4.- Es un periférico de entrada y salida",
+];
+
+// 3. Respuestas para "¿Que es un algoritmo?"
+List<String> respuestasAlgoritmo = [
+  "1.- Es un dispositivo fisico que almacena informacion temporalmente",
+  "2.- Es una secuencia de pasos o instrucciones que se siguen para resolver un problema o realizar una tarea",
+  "3.- Es un lenguaje de programacion utilizado para crear aplicaciones moviles",
+  "4.- Es un conjunto de imagenes que representan datos visualmente",
+];
+
+// 4. Respuestas para "¿Que es un lenguaje de programacion?"
+List<String> respuestasLenguaje = [
+  "1.- Es un conjunto de reglas y simbolos que se utilizan para escribir programas informaticos",
+  "2.- Es una herramienta para ensamblar componentes electronicos",
+  "3.- Es un sistema operativo para gestionar recursos de hardware",
+  "4.- Es una red de computadoras interconectadas",
+];
+
 void startQuizz() {
   int score = 0;
   print("Bienvenido al quizz!");
   print("Responde las siguientes preguntas:");
 
-  preguntar(quizzQuestions, score);
+  preguntar(score);
+
+  print(mensajePuntuacion(score));
 }
 
 // Metodo para lanzar las preguntas al usuario y que este conteste
-void preguntar(Map<String, String> preguntas, int score) {
-  // 1. Respuestas para "¿Que significan las siglas CPU?"
-  List<String> respuestasCPU = [
-    "Unidad de Control de Procesamiento",
-    "Centro de Procesamiento Unificado",
-    "Computadora Personal Universal",
-    "Unidad Central de Procesamiento",
-  ];
-
-  // 2. Respuestas para "¿Que es un sistema operativo?"
-  List<String> respuestasSO = [
-    "Es un conjunto de cables que conectan los componentes de un ordenador",
-    "Es un tipo de lenguaje de programación para hardware",
-    "Es un software que gestiona los recursos de hardware y software de un ordenador",
-    "Es un periférico de entrada y salida",
-  ];
-
-  // 3. Respuestas para "¿Que es un algoritmo?"
-  List<String> respuestasAlgoritmo = [
-    "Es un dispositivo fisico que almacena informacion temporalmente",
-    "Es una secuencia de pasos o instrucciones que se siguen para resolver un problema o realizar una tarea",
-    "Es un lenguaje de programacion utilizado para crear aplicaciones moviles",
-    "Es un conjunto de imagenes que representan datos visualmente",
-  ];
-
-  // 4. Respuestas para "¿Que es un lenguaje de programacion?"
-  List<String> respuestasLenguaje = [
-    "Es un conjunto de reglas y simbolos que se utilizan para escribir programas informaticos",
-    "Es una herramienta para ensamblar componentes electronicos",
-    "Es un sistema operativo para gestionar recursos de hardware",
-    "Es una red de computadoras interconectadas",
-  ];
-
+int preguntar(int score) {
   String? answer;
-  for (var pregunta in preguntas.entries) {
+  for (var pregunta in quizzQuestions.entries) {
     print(pregunta.key);
 
     switch (pregunta.key) {
@@ -65,7 +67,7 @@ void preguntar(Map<String, String> preguntas, int score) {
         print("Respuesta: ");
         answer = stdin.readLineSync()?.toLowerCase();
 
-        if (comprobarRespuestas(preguntas, answer)) {
+        if (comprobarRespuestas(answer)) {
           score++;
           print("CORRECTO");
         } else {
@@ -81,7 +83,7 @@ void preguntar(Map<String, String> preguntas, int score) {
         print("Respuesta: ");
         answer = stdin.readLineSync()?.toLowerCase();
 
-        if (comprobarRespuestas(preguntas, answer)) {
+        if (comprobarRespuestas(answer)) {
           score++;
           print("CORRECTO");
         } else {
@@ -97,7 +99,7 @@ void preguntar(Map<String, String> preguntas, int score) {
         print("Respuesta: ");
         answer = stdin.readLineSync()?.toLowerCase();
 
-        if (comprobarRespuestas(preguntas, answer)) {
+        if (comprobarRespuestas(answer)) {
           score++;
           print("CORRECTO");
         } else {
@@ -105,7 +107,7 @@ void preguntar(Map<String, String> preguntas, int score) {
         }
         break;
 
-      case "¿Que es un lenguaje de programación?":
+      case "¿Que es un lenguaje de programacion?":
         for (var respuesta in respuestasLenguaje) {
           print(respuesta);
         }
@@ -113,7 +115,7 @@ void preguntar(Map<String, String> preguntas, int score) {
         print("Respuesta: ");
         answer = stdin.readLineSync()?.toLowerCase();
 
-        if (comprobarRespuestas(preguntas, answer)) {
+        if (comprobarRespuestas(answer)) {
           score++;
           print("CORRECTO");
         } else {
@@ -123,13 +125,15 @@ void preguntar(Map<String, String> preguntas, int score) {
       default:
     }
   }
+
+  return score;
 }
 
 // Función para comprobar si la respuesta es correcta o no
-bool comprobarRespuestas(Map<String, String> preguntas, String? respuesta) {
-  String pregunta = preguntas.keys.firstWhere(
+bool comprobarRespuestas(String? respuesta) {
+  String pregunta = quizzQuestions.keys.firstWhere(
     // Buscamos en el mapa la pregunta y comprobamos que sea igual su valor a la respuesta
-    (question) => preguntas[question] == respuesta,
+    (question) => quizzQuestions[question] == respuesta,
     orElse: () => "",
   );
 
