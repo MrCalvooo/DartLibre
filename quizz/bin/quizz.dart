@@ -12,5 +12,5 @@ void main(List<String> arguments) {
 
   print("Empezamos el juego!");
 
-  quizz.startGame();
+  quizz.startQuizz();
 }
